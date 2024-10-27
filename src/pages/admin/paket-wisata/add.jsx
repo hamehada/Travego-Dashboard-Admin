@@ -18,7 +18,6 @@ const initInput = {
   nama_paket: "",
   deskripsi: "",
   id_rm: 0,
-  id_hotel: 0,
   id_kendaraan: 0,
   harga: 0,
   id_wisata: 0,
@@ -29,7 +28,6 @@ const AddPaketWisataPage = () => {
   const [formInput, setFormInput] = useState(initInput);
   const [errors, setErrors] = useState({});
   const [rumahMakanList, setRumahMakanList] = useState([]);
-  const [hotelList, setHotelList] = useState([]);
   const [kendaraanList, setKendaraanList] = useState([]);
   const [wisataList, setWisataList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,16 +35,14 @@ const AddPaketWisataPage = () => {
   // Fetch data dropdown
   const fetchDropdownData = async () => {
     try {
-      const [rmResponse, hotelResponse, kendaraanResponse, wisataResponse] =
+      const [rmResponse, kendaraanResponse, wisataResponse] =
         await Promise.all([
           axiosInstance.get("/getRumahMakan"),
-          axiosInstance.get("/getHotel"),
           axiosInstance.get("/getKendaraan"),
           axiosInstance.get("/getWisata"),
         ]);
 
       setRumahMakanList(rmResponse.data);
-      setHotelList(hotelResponse.data);
       setKendaraanList(kendaraanResponse.data);
       setWisataList(wisataResponse.data);
     } catch (error) {
@@ -92,10 +88,6 @@ const AddPaketWisataPage = () => {
     if (!formInput.id_rm) {
       valid = false;
       newErrors.id_rm = "Pilih rumah makan";
-    }
-    if (!formInput.id_hotel) {
-      valid = false;
-      newErrors.id_hotel = "Pilih hotel";
     }
     if (!formInput.id_kendaraan) {
       valid = false;
@@ -179,25 +171,7 @@ const AddPaketWisataPage = () => {
             </Select>
             {errors.id_rm && <FormHelperText>{errors.id_rm}</FormHelperText>}
           </FormControl>
-          {/* Dropdown Hotel */}
-          <FormControl fullWidth margin="normal" error={!!errors.id_hotel}>
-            <InputLabel id="select-hotel-label">Hotel</InputLabel>
-            <Select
-              labelId="select-hotel-label"
-              name="id_hotel"
-              value={formInput.id_hotel}
-              onChange={handleChange}
-            >
-              {hotelList.map((hotel) => (
-                <MenuItem key={hotel.id_hotel} value={hotel.id_hotel}>
-                  {hotel.nama_hotel}
-                </MenuItem>
-              ))}
-            </Select>
-            {errors.id_hotel && (
-              <FormHelperText>{errors.id_hotel}</FormHelperText>
-            )}
-          </FormControl>
+         
           {/* Dropdown Kendaraan */}
           <FormControl fullWidth margin="normal" error={!!errors.id_kendaraan}>
             <InputLabel id="select-kendaraan-label">Kendaraan</InputLabel>

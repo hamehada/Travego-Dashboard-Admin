@@ -165,11 +165,7 @@ const NAV_ITEMS = [
     href: "/admin/paket-wisata",
     icon: <FaClipboardList />,
   },
-  {
-    name: "Hotel",
-    href: "/admin/hotel",
-    icon: <FaHotel />,
-  },
+
   {
     name: "Rumah Makan",
     href: "/admin/rumah-makan",

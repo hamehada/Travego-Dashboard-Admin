@@ -123,26 +123,8 @@ const TransaksiPage = () => {
                   <Typography variant="subtitle1" className="font-bold mb-2">
                     Hotel
                   </Typography>
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={selectedTransaksi.paket.hotel.gambar_hotel}
-                      alt={selectedTransaksi.paket.hotel.nama_hotel}
-                      className="w-16 h-16 object-cover"
-                      width={64}
-                      height={64}
-                    />
-                    <div>
-                      <Typography variant="body2">
-                        <strong>Nama:</strong> {selectedTransaksi.paket.hotel.nama_hotel}
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Alamat:</strong> {selectedTransaksi.paket.hotel.alamat_hotel}
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Harga Kamar:</strong> {formatRupiah(selectedTransaksi.paket.hotel.harga_kamar)}
-                      </Typography>
-                    </div>
-                  </div>
+                  
+                  
                 </div>
 
                 <div className="mb-4">

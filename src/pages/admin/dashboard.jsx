@@ -7,7 +7,6 @@ const initData = {
   totalTransaksi: 0,
   totalPaketWisata: 0,
   totalWisata: 0,
-  totalHotel: 0,
   totalKendaraan: 0,
 };
 
@@ -16,12 +15,11 @@ const Dashboard = () => {
   useEffect(() => {
     const getCountData = async () => {
       try {
-        const [transaksi, paketWisata, wisata, hotel, kendaraan] =
+        const [transaksi, paketWisata, wisata, kendaraan] =
           await Promise.all([
             axiosInstance.get("/getTransaksi"),
             axiosInstance.get("/getPaketWisata"),
             axiosInstance.get("/getWisata"),
-            axiosInstance.get("/getHotel"),
             axiosInstance.get("/getKendaraan"),
           ]);
 
@@ -29,7 +27,6 @@ const Dashboard = () => {
           totalTransaksi: transaksi.data.length,
           totalPaketWisata: paketWisata.data.length,
           totalWisata: wisata.data.length,
-          totalHotel: hotel.data.length,
           totalKendaraan: kendaraan.data.length,
         });
       } catch (error) {
@@ -59,10 +56,6 @@ const Dashboard = () => {
           <p className="text-4xl font-bold mt-2">{countData.totalWisata}</p>
         </div>
 
-        <div className="p-4 bg-white shadow rounded-lg">
-          <h2 className="text-lg font-semibold">Total Hotel</h2>
-          <p className="text-4xl font-bold mt-2">{countData.totalHotel}</p>
-        </div>
 
         <div className="p-4 bg-white shadow rounded-lg">
           <h2 className="text-lg font-semibold">Total Kendaraan</h2>
